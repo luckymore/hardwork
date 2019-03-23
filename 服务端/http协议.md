@@ -18,10 +18,10 @@
 ### 对于浏览器来说，有三种表现形式
 - `Status Code: 200  (from disk cache)` 重启浏览器后，内存释放了，再查看资源则是从硬盘中获取，同时读取到浏览器进程的内存中，刷新页面又变成从内存中读取
 - `Status Code: 200  (from memory cache)` 直接从内存中读取
-- `Status Code: 304` 询问服务器，是否应用本地缓存
+- `Status Code: 304` 询问服务器，未过期返回304，过期返回200和新的资源
 
 ### 协商缓存，由多个请求头控制：
-强缓存，设置缓存的过期时间，优先级 `Cache-Control > Expires`
+> 强缓存，设置缓存的过期时间，优先级 `Cache-Control > Expires`
 - `Expires`: ~~一说与 `date` 比较~~
   ```
   Expires: Fri, 30 Oct 1998 14:19:41 GMT
@@ -33,24 +33,25 @@
   <summary>取值说明</summary>
 
   `max-age=[seconds]` 指定表示被认为是新鲜的最长时间。与Expires类似，这个指令是相对于请求的时间的，而不是绝对的。[秒]是您希望表示为其刷新的请求的时间间隔的秒数。
-  
+
   `s-maxage=[seconds]` 类似于max-age，但它只适用于共享(例如代理)缓存。
   `public` 将经过验证的响应标记为可缓存;通常，如果需要HTTP身份验证，响应将自动成为私有的。
-  
+
   `private` 允许特定于一个用户的缓存(例如，在浏览器中)存储响应;共享缓存(例如，在代理中)可能没有。无缓存强制缓存每次在释放缓存副本之前将请求提交给源服务器进行验证。这有助于确保身份验证得到尊重(与public结合)，或者在不牺牲缓存的所有好处的情况下保持严格的新鲜度。
-  
+
   `no-store` 指示缓存在任何条件下都不要保存表示形式的副本。
-  
+
   `must-revalidate` 告诉缓存，它们必须遵守关于表示的任何新鲜信息。HTTP允许缓存在特殊条件下为陈旧的表示提供服务;通过指定这个头，您告诉缓存您希望它严格遵循您的规则。
-  
+
   `proxy-revalidate` 类似于必须重新验证，只是它只适用于代理缓存。
   </details>
 
 
-已过期，则向服务器发出请求，根据以下头信息，验证是否更新本地缓存,优先级 `Etag > Last-Modified`
+> 已过期，与服务器协商，根据以下头信息，验证是否更新本地缓存,优先级 `Etag > Last-Modified`
 - Last-Modified / If-Modified-Since
 - Etag / If-None-Match
-一般由web server自动生成，适用于静态资源，但是无法处理动态内容(like CGI, ASP or database sites)，并且
+
+一般由web server自动生成，适用于静态资源，但是无法处理动态内容(like CGI, ASP or database sites)
 
 
 ## 参考
