@@ -11,7 +11,52 @@
 - 默认端口分别为80、443
 - 加密过程对性能有一定影响
 
-如果还往细了问，，对不起大哥，我是个前端 at present。
+### http、https 协议属于应用层，准确的说是运行在TCP协议上的协议
+<details>
+  <summary>七层协议及其配合过程</summary>
+
+  #### 七层协议 
+  七层协议只是概念模型：“开放式系统互联通信参考模型”（英语：Open System Interconnection Reference Model，缩写为 OSI），简称为OSI模型（OSI model）
+  现行网络通信模型：TCP/IP协议族
+  ![七层协议](https://pic4.zhimg.com/80/12450251a3d61033e5a4bbdecebbf374_hd.jpg)
+  
+  #### 七层协议的配合过程
+  ![七层协议的配合过程](https://pic2.zhimg.com/80/v2-88808b48a5cc682c2a59d10eecf9974f_hd.jpg)
+</details>
+
+### 如何迁移到https
+使用[Certbot](https://certbot.eff.org/)工具，选择服务器和系统
+- 安装免费证书
+- 服务器配置, nginx示例
+```shell
+# 配置 nginx 、验证域名所有权
+location ^~ /.well-known/acme-challenge/ {
+   default_type "text/plain";
+   root     /home/wwwroot/linuxstory.org/;
+}
+
+location = /.well-known/acme-challenge/ {
+   return 404;
+}
+
+# 使用 SSL 证书
+listen 443 ssl;
+server_name linuxstory.org www.linuxstory.org;
+index index.html index.htm index.php;
+root  /home/wwwroot/linuxstory.org;
+ 
+ssl_certificate      /etc/letsencrypt/live/linuxstory.org/fullchain.pem;
+ssl_certificate_key  /etc/letsencrypt/live/linuxstory.org/privkey.pem;
+
+# 访问请求自动重定
+server {
+    listen 80;
+    server_name linuxstory.org www.linuxstory.org;
+    return 301 https://$server_name$request_uri;
+}
+```
+
+如果还往细了问，，对不起大哥，我是个前端 at present，或者向对方请教请教😂
 
 
 ## 缓存机制
