@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/js/算法/demo/爬梯子.js"
+      "program": "${workspaceFolder}/js/算法/demo/小米.js"
     }
   ]
 }

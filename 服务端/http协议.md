@@ -1,5 +1,29 @@
 # 常见http问题
-一般会先问，http与https的区别，他们属于七层协议的哪一层？那如何把迁移到https呢？
+一般会先问，http1.0 1.1 2区别，与https的区别，他们属于七层协议的哪一层？那如何把http迁移到https呢？
+
+## http1.0 1.1 2的区别
+- 1.0 协议缺陷:
+  无法复用链接，完成即断开，重新慢启动和 TCP 3次握手
+  head of line blocking: 线头阻塞，导致请求之间互相影响 ![http1.1才有的？？？](https://github.com/bagder/http2-explained/blob/master/zh/part2.md)
+
+- 1.1 改进:
+  - 长连接(默认 keep-alive)，复用
+  - 新增 `host` 字段指定对应的虚拟站点: HTTP/1.1 的所有请求报文中必须包含一个Host头字段。如果一个 HTTP/1.1 请求缺少 Host 头字段或者设置了超过一个的 Host 头字段，一个400（Bad Request）状态码会被返回。
+  - 新增功能:
+    - 断点续传：请求头引入了range/If-Range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content）
+    - ~~身份认证: SSL???~~
+    - 状态管理：简单理解为，描述了两个头字段：Cookie和Set-cookie，用于携带服务端和客户端之间的状态信息
+    - 缓存
+      Cache-Control
+      Expires/Date/Age  1.0
+      Last-Modified
+      Etag
+
+- 2.0:
+  - 多路复用
+  - 二进制分帧层: 应用层和传输层之间
+  - 首部压缩
+  - 服务端推送
 
 ## http 与 https 的区别
 - https很安全
