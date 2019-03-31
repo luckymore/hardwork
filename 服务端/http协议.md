@@ -3,8 +3,8 @@
 
 ## http1.0 1.1 2的区别
 - 1.0 协议缺陷:
-  无法复用链接，完成即断开，重新慢启动和 TCP 3次握手
-  head of line blocking: 线头阻塞，导致请求之间互相影响 ![http1.1才有的？？？](https://github.com/bagder/http2-explained/blob/master/zh/part2.md)
+  - 无法复用链接，完成即断开，重新慢启动和 TCP 3次握手
+  - head of line blocking: 线头阻塞，导致请求之间互相影响 ![http1.1才有的？？？](https://github.com/bagder/http2-explained/blob/master/zh/part2.md)
 
 - 1.1 改进:
   - 长连接(默认 keep-alive)，复用
@@ -20,10 +20,10 @@
       Etag
 
 - 2.0:
-  - 多路复用
-  - 二进制分帧层: 应用层和传输层之间
-  - 首部压缩
-  - 服务端推送
+  - 多路复用: 原来是同一个 TCP 连接里面，上一个回应（response）发送完了，服务器才能发送下一个，现在可以多个回应一起发送
+  - ~~二进制分帧层: 应用层和传输层之间~~
+  - 首部压缩: 头信息（header）原来是直接传输文本，现在是压缩后传输。
+  - 服务端推送: 是 HTTP/2 协议里面，唯一一个需要开发者自己配置的功能。其他功能都是服务器和浏览器自动实现，不需要开发者关心
 
 ## http 与 https 的区别
 - https很安全
