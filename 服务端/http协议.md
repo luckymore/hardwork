@@ -4,7 +4,7 @@
 ## http1.0 1.1 2的区别
 - 1.0 协议缺陷:
   - 无法复用链接，完成即断开，重新慢启动和 TCP 3次握手
-  - head of line blocking: 线头阻塞，导致请求之间互相影响 ![http1.1才有的？？？](https://github.com/bagder/http2-explained/blob/master/zh/part2.md)
+  - head of line blocking: 线头阻塞，导致请求之间互相影响 [http1.1才有的？？？](https://github.com/bagder/http2-explained/blob/master/zh/part2.md)
 
 - 1.1 改进:
   - 长连接(默认 keep-alive)，复用
