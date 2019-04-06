@@ -8,7 +8,3 @@
 
 
 
-
-
-## 参考
-- [7 天打造前端性能监控系统](http://fex.baidu.com/blog/2014/05/build-performance-monitor-in-7-days/)
