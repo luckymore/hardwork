@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 100px;
+    }
+    button {
+      width: 40px;
+    }
+    .nums {
+      width: 135px;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" value="0">
+  <section class="nums">
+    <button class="btn-num" data-val>0</button>
+    <button class="btn-num">1</button>
+    <button class="btn-num">2</button>
+    <button class="btn-num">3</button>
+    <button class="btn-num">4</button>
+    <button class="btn-num">5</button>
+    <button class="btn-num">6</button>
+    <button class="btn-num">7</button>
+    <button class="btn-num">8</button>
+    <button class="btn-num">9</button>
+  </section>
+  <section class="opts">
+    <button class="btn-operator" data-opt>+</button>
+    <button class="btn-operator">-</button>
+    <button class="btn-operator">*</button>
+    <button class="btn-operator">/</button>
+    <button class="btn-operator">=</button>
+  </section>
+  <script>
+    // 绑定事件、添加自定义属性
+
+
+    // 点数字，首位不为0，追加到currVal
+
+    // 点操作符，currVal推入cache
+    // 若与上一个操作符同级则计算，否则推入cache
+
+    // [1, +, 2 , * , 3]
+    let cache = []
+    let currVal = '0'
+
+    function cacl() {
+      eval('')
+    }
+
+    function $(el) {
+      return document.querySelector(el)
+    }
+  </script>
+</body>
+</html>
