@@ -1,7 +1,7 @@
 /**
  * 请实现如下函数，可以批量请求数据,所有的 url 地址在 urls 参数中，同时可以通过 max 参数控制请求的并发数，
  * 当所有请求结束之后，需要执行 callback 回调函数，发送请求的函数可以直接使用 fetch 即可
- * 【来源】https://juejin.im/post/5c8ded9be51d45365835345f
+ * 
  */
 function sendRequest(urls, max, callback) {
   let currentIndex = 0

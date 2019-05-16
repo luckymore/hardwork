@@ -1,9 +1,3 @@
-## 每个方向都有一个 READMD.md 文档，来描述：
-
-- 自己对这个方向的理解：对整个 web 知识的梳理，融会贯通
-- 学习过程： 给后来人的教程和优质资源
-- 目录导航
-
 ## [Weekly ARTS](https://www.yuque.com/pengfuxiao/rcbj/du90ly)
 
 - Algorithm: 主要是为了编程训练和学习。
