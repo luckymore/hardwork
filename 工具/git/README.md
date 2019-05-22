@@ -15,9 +15,28 @@ squash 5756e15 Commit-2
 squash b1b8189 Commit-3
 ```
 
-###
+### git reflog + git cherry-pick 对付  git reset ehr33 --hard
 
+### git tag
+```bash
+# 批量删除本地tag
+git tag | grep "v" |xargs git tag -d
 
+# 批量删除远程tag
+git show-ref --tag | grep "v1.0"| awk '{print $2}'|xargs git push origin --delete
+```
+
+### git rm
+```bash
+# 删除远程文件夹，但保留本地文件夹
+git rm -r –cached dirname
+
+# 删除本地和暂存区
+git rm file_path
+
+# 暂存区
+git rm –cached file_path
+``` 
 
 
 ## 参考
