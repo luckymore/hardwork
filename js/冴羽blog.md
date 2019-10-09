@@ -21,12 +21,15 @@
 
 
 ### 其他问题
-  #### Function.__proto__===Function.prototype
-    我认为有两种可能：一是为了保持与其他函数一致，二是就是表明一种关系而已。
-    简单的说，我认为：就是先有的Function，然后实现上把原型指向了Function.prototype，但是我们不能倒过来推测因为Function.__proto__ === Function.prototype，所以Function调用了自己生成了自己。
+
+#### Function.__proto__===Function.prototype
+
+我认为有两种可能：一是为了保持与其他函数一致，二是就是表明一种关系而已。
+简单的说，我认为：就是先有的Function，然后实现上把原型指向了Function.prototype，但是我们不能倒过来推测因为Function.__proto__ === Function.prototype，所以Function调用了自己生成了自己。
 
 ![关系图](https://user-images.githubusercontent.com/17822028/57208736-e9bbed00-7007-11e9-9d2e-aa3332327c06.png)
 
 
 ### 其他
   - [Object.prototype.toString方法的原理](https://www.cnblogs.com/ziyunfei/archive/2012/11/05/2754156.html)
+  - [ECMAScript 5.1中文版](http://yanhaijing.com/es5/#79)
