@@ -33,12 +33,32 @@
 </style>
 ```
 
+### word-break
+> 是否在文本溢出内容边框的时候断行
 
+主要有四个值：`normal | break-all | keep-all | break-word`
+- break-all
+  
+- 
+- 
 
+### overflow-wrap (word-wrap微软定义的，相当于别名)
+> 可以理解为，为了防止文本溢出，允许单词断行
 
+主要有三个值：`normal | break-word | anywhere`，实测不支持 `anywhere`，chrome会直接忽略这个属性。。。
 
+## 使用
+最常见的使用场景，大概是中英混排，两端对齐
 
-<!-- 作者：顾二凡
-链接：https://juejin.im/post/5b8905456fb9a01a105966b4
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 -->
+```html
+<div class="justify">
+Honorificabilitudinitatibus califragilisticexpialidocious Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+        次の単語グレートブリテンおよび北アイルランド連合王国で本当に大きな言葉
+</div>
+
+<style>
+.justify {
+  
+}
+</style>
+```
