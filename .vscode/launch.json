@@ -8,11 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-<<<<<<< HEAD
-      "program": "${workspaceFolder}/js/算法/demo/爬梯子.js"
-=======
-      "program": "${workspaceFolder}/js/算法/demo/小米.js"
->>>>>>> 4dda93600c3cfc22f55fe0a639e46f135df3a679
+      "program": "${workspaceFolder}/js/utils/curry.js"
     }
   ]
 }
