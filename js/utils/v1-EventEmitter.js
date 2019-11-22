@@ -6,9 +6,10 @@ class EventEmitter {
 
   on(event, callback) {
     if (this.handler[event]) {
-      this.handler[event].push(callback)
+      this.handler[event]
+      .push(callback)
     } else {
-      this.handler[event] = [callback]
+      this.handler[event] = [callback];
     }
   }
 
