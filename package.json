@@ -3,16 +3,24 @@
   "version": "1.0.0",
   "description": "- Algorithm: 主要是为了编程训练和学习。 - Review: 主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。   http://Medium.com Netflix - Tip: 主要是为了总结和归纳你在是常工作中所遇到的知识点。 - Share: 主要是为了建立你的影响力，能够输出价值观。分享一篇有观点和思考的技术文   章。",
   "main": "index.js",
-  "dependencies": {
+  "devDependencies": {
+    "husky": "^3.1.0",
     "lint-staged": "^9.4.3"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "precommit": "lint-staged"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm test"
+    }
+  },
   "lint-staged": {
-    "js/utils/v1-EventEmitter.js": "eslint"
+    "js/utils/v1-EventEmitter.js": [
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",

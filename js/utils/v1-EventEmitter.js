@@ -1,5 +1,5 @@
 // basic
-class EventEmitter {
+class EventEmitter{
   constructor() {
     this.handler = {}
   }
