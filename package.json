@@ -12,7 +12,7 @@
   },
   "lint-staged": {
     "js/utils/v1-EventEmitter.js": [
-      "git add"
+      "eslint"
     ]
   },
   "repository": {
