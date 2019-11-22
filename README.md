@@ -18,5 +18,10 @@
 - [Too young, too simple. Sometimes, naive & stupid 🐌 ](https://github.com/jawil/blog)
 - [冴羽写博客的地方，预计写四个系列：JavaScript 深入系列、JavaScript 专题系列、ES6 系列、React 系列。 ](https://github.com/mqyqingfeng/Blog)
 - [💦 纸上得来终觉浅， 绝知此事要躬行。 ](https://github.com/zhanghao-zhoushan/record)
+<<<<<<< HEAD
 - [语义化版本控制](https://semver.org/lang/zh-CN/)1
 mastermaster
+=======
+- [语义化版本控制](https://semver.org/lang/zh-CN/)222
+devdevdevdev
+>>>>>>> develop
