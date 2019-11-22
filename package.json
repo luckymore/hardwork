@@ -8,14 +8,7 @@
     "lint-staged": "^9.4.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "lint-staged"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit",
-      "pre-push": "npm test"
-    }
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
     "js/utils/v1-EventEmitter.js": [
@@ -31,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/luckymore/hardwork/issues"
   },
-  "homepage": "https://github.com/luckymore/hardwork#readme"
+  "homepage": "https://github.com/luckymore/hardwork#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
