@@ -1,4 +1,5 @@
 // basic
+console.log(a)
 class EventEmitter{
   constructor() {
     this.handler = {}
