@@ -1,5 +1,4 @@
 // basic
-console.log(a)
 class EventEmitter{
   constructor() {
     this.handler = {}
@@ -42,8 +41,8 @@ class EventEmitter{
 }
 
 let event=new EventEmitter();
-event.on('say',function(str){
-   console.log(str);
+event.on('say',function(){
+  //  console.log(str);
 });
 event.emit('say','hello Jony yu');
 //输出hello Jony yu
