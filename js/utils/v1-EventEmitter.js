@@ -46,3 +46,8 @@ event.on('say',function(){
 });
 event.emit('say','hello Jony yu');
 //输出hello Jony yu
+<<<<<<< HEAD
+event.emit('say','hello Jony yu0');
+=======
+event.emit('say','hello Jony yu1');
+>>>>>>> develop
