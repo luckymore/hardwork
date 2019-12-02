@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.js"></script>
+  <script>
+    var scene = new THREE.Scene()
+    /*创建场景*/
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+    /*创建照相机*/
+    var renderer = new THREE.WebGLRenderer()
+    /*创建渲染器*/
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    document.body.appendChild(renderer.domElement)
+
+    var geometry = new THREE.BoxGeometry(1, 1, 1)
+    /*创建几何模型*/
+    var material = new THREE.MeshBasicMaterial({ color: 0xff })
+    /*创建材质*/
+    var cube = new THREE.Mesh(geometry, material)
+    /*几何模型与材质合成为物件*/
+    scene.add(cube)
+    /*将物件添加入场景*/
+
+    camera.position.z = 5
+
+    var render = function() {
+      requestAnimationFrame(render)
+      cube.rotation.x += 0.01
+      cube.rotation.y += 0.01
+      renderer.render(scene, camera)
+      /*渲染出在相机camera中看到的scene场景*/
+    }
+
+    render()
+  </script>
+</html>

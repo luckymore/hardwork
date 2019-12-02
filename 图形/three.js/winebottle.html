@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.js"></script>
+  <script src="./loader/GLTFLoader.js"></script>
+  <script>
+    var scene = new THREE.Scene()
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+    var renderer = new THREE.WebGLRenderer()
+    var targetRotation = 0;
+			var targetRotationOnMouseDown = 0;
+			var mouseX = 0;
+			var mouseXOnMouseDown = 0;
+			var windowHalfX = window.innerWidth / 2;
+
+    document.body.appendChild(renderer.domElement)
+
+    var loader = new THREE.GLTFLoader()
+
+    loader.load(
+      './tesla_cybertruck/scene.gltf',
+      obj => {
+        console.log(obj)
+        scene.add(obj.scene)
+        scene.add(new THREE.AmbientLight(0xffffff))
+
+        camera.position.set(0, 100, 600)
+        // camera.lookAt(new THREE.Vector3(100, 100, 100))
+
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        renderer.setClearColor(0xdddddd)
+
+        function render() {
+          scene.rotation.y += ( targetRotation - scene.rotation.y ) * 0.05
+          renderer.render(scene, camera)
+          requestAnimationFrame(render)
+        }
+        render()
+        document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+				window.addEventListener( 'resize', onWindowResize, false );
+      },
+      console.log,
+      console.log
+    )
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+    }
+    //
+    function onDocumentMouseDown(event) {
+      console.log('mousedown')
+      event.preventDefault()
+      document.addEventListener('mousemove', onDocumentMouseMove, false)
+      document.addEventListener('mouseup', onDocumentMouseUp, false)
+      document.addEventListener('mouseout', onDocumentMouseOut, false)
+      mouseXOnMouseDown = event.clientX - windowHalfX
+      targetRotationOnMouseDown = targetRotation
+    }
+    function onDocumentMouseMove(event) {
+      console.log('onDocumentMouseMove')
+      mouseX = event.clientX - windowHalfX
+      targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.02
+    }
+    function onDocumentMouseUp() {
+      document.removeEventListener('mousemove', onDocumentMouseMove, false)
+      document.removeEventListener('mouseup', onDocumentMouseUp, false)
+      document.removeEventListener('mouseout', onDocumentMouseOut, false)
+    }
+    function onDocumentMouseOut() {
+      document.removeEventListener('mousemove', onDocumentMouseMove, false)
+      document.removeEventListener('mouseup', onDocumentMouseUp, false)
+      document.removeEventListener('mouseout', onDocumentMouseOut, false)
+    }
+    function onDocumentTouchStart(event) {
+      console.log('touchstart')
+      if (event.touches.length == 1) {
+        event.preventDefault()
+        mouseXOnMouseDown = event.touches[0].pageX - windowHalfX
+        targetRotationOnMouseDown = targetRotation
+      }
+    }
+    function onDocumentTouchMove(event) {
+      console.log('touchmove', targetRotation)
+      console.log(targetRotation)
+      if (event.touches.length == 1) {
+        event.preventDefault()
+        mouseX = event.touches[0].pageX - windowHalfX
+        targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.05
+        console.log(targetRotation)
+      }
+    }
+
+    // let scene, camera, renderer, controls, guiControls;
+    // let stats = initStats();
+
+    // /* 场景 */
+    // function initScene() {
+
+    //     scene = new THREE.Scene();
+
+    // }
+
+    // /* 相机 */
+    // function initCamera() {
+
+    //     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 10000);
+    //     camera.position.set(150, 100, 1001);
+    //     camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    // }
+
+    // /* 渲染器 */
+    // function initRender() {
+
+    //     renderer = new THREE.WebGLRenderer({antialias: true});
+    //     renderer.setSize(window.innerWidth, window.innerHeight);
+    //     renderer.setClearColor(0x0E3866);
+    //     document.body.appendChild(renderer.domElement);
+
+    // }
+
+    // /* 灯光 */
+    // function initLight() {
+
+    //     scene.add(new THREE.AmbientLight(0xffffff));
+
+    // }
+
+    // /* 控制器 */
+    // function initControls() {
+
+    //     controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    //     /* 属性参数默认 */
+
+    // }
+
+    // /* 调试插件 */
+    // function initGui() {
+
+    //     guiControls = new function () {
+
+    //     };
+
+    //     let controls = new dat.GUI({width: 200});
+
+    // }
+
+    // /* 场景中的内容 */
+    // function initContent() {
+
+    //     // 加载 glTF 格式的模型
+    //     let loader = new THREE.GLTFLoader();/*实例化加载器*/
+
+    //     loader.load('./tesla_cybertruck/scene.gltf',function (obj) {
+
+    //         console.log(obj);
+    //         obj.scene.position.y = 1;
+    //         scene.add(obj.scene);
+    //         document.getElementById('loading').style.display = 'none';
+
+    //     },function (xhr) {
+
+    //         console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+    //     },function (error) {
+
+    //         console.log('load error!'+error.getWebGLErrorMessage());
+
+    //     })
+
+    // }
+
+    // /* 性能插件 */
+    // function initStats() {
+
+    //     // let stats = new Stats();
+
+    //     // document.body.appendChild(stats.domElement);
+
+    //     // return stats;
+
+    // }
+
+    // /* 窗口变动触发 */
+    // function onWindowResize() {
+
+    //     camera.aspect = window.innerWidth / window.innerHeight;
+    //     camera.updateProjectionMatrix();
+    //     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // }
+
+    // /* 数据更新 */
+    // function update() {
+
+    //     // stats.update();
+
+    // }
+
+    // /* 初始化 */
+    // function init() {
+
+    //     initScene();
+    //     initCamera();
+    //     initRender();
+    //     initLight();
+    //     // initControls();
+    //     initContent();
+    //     // initGui();
+
+    //     /* 监听事件 */
+    //     window.addEventListener('resize', onWindowResize, false);
+
+    // }
+
+    // /* 循环渲染 */
+    // function animate() {
+
+    //     requestAnimationFrame(animate);
+    //     renderer.render(scene, camera);
+    //     update();
+
+    // }
+
+    // /* 初始加载 */
+    // (function () {
+    //     console.log("three init start...");
+
+    //     init();
+    //     animate();
+
+    //     console.log("three init send...");
+    // })();
+  </script>
+</html>
