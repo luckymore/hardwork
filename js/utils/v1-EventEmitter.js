@@ -1,14 +1,15 @@
 // basic
-class EventEmitter {
+class EventEmitter{
   constructor() {
     this.handler = {}
   }
 
   on(event, callback) {
     if (this.handler[event]) {
-      this.handler[event].push(callback)
+      this.handler[event]
+      .push(callback)
     } else {
-      this.handler[event] = [callback]
+      this.handler[event] = [callback];
     }
   }
 
@@ -40,8 +41,13 @@ class EventEmitter {
 }
 
 let event=new EventEmitter();
-event.on('say',function(str){
-   console.log(str);
+event.on('say',function(){
+  //  console.log(str);
 });
 event.emit('say','hello Jony yu');
 //输出hello Jony yu
+<<<<<<< HEAD
+event.emit('say','hello Jony yu0');
+=======
+event.emit('say','hello Jony yu1');
+>>>>>>> develop
