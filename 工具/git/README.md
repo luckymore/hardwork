@@ -38,6 +38,13 @@ git rm file_path
 git rm –cached file_path
 ``` 
 
+### git log
+```bash
+# 查看文件变动记录
+git log --full-history  -- myfile
+```
+
+
 
 ## 参考
 - [Git 菜单](https://github.com/geeeeeeeeek/git-recipes/blob/master/README.md)
