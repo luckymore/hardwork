@@ -42,6 +42,9 @@ git rm –cached file_path
 ```bash
 # 查看文件变动记录
 git log --full-history  -- myfile
+
+# 搜索关键字
+glg --grep='删除 pages/friendsHelp'
 ```
 
 
