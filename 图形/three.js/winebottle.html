@@ -33,11 +33,15 @@
       './tesla_cybertruck/scene.gltf',
       obj => {
         console.log(obj)
+        var light = new THREE.DirectionalLight();
+        light.position.set(2, 100, 100);
+        scene.add(light);
         scene.add(obj.scene)
-        scene.add(new THREE.AmbientLight(0xffffff))
 
         camera.position.set(0, 100, 600)
-        // camera.lookAt(new THREE.Vector3(100, 100, 100))
+        var color = 0xffffff;
+        
+        camera.lookAt(new THREE.Vector3(100, 100, 100))
 
         renderer.setSize(window.innerWidth, window.innerHeight)
         renderer.setClearColor(0xdddddd)
