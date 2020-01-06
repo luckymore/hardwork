@@ -8,7 +8,8 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/js/utils/curry.js"
+      // "program": "${workspaceFolder}/js/utils/curry.js"
+      "program": "${workspaceFolder}/js/utils/promiseA+.js"
     }
   ]
 }
