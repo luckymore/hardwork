@@ -1,0 +1,77 @@
+function LazyMan(name) {
+  if (!(this instanceof LazyMan)) {
+    return new LazyMan(name)
+  }
+
+  const cb = next => {
+    console.log(`I'm ${name}`)
+    next()
+  }
+  this.cbs = [cb]
+  setTimeout(() => this.next())
+}
+
+LazyMan.prototype.sleep = function(time) {
+  const cb = next => {
+    setTimeout(() => {
+      console.log('wake up after ', time, 's')
+      next()
+    }, time * 1000)
+  }
+  this.cbs.push(cb)
+  return this
+}
+
+LazyMan.prototype.eat = function(food) {
+  const cb = next => {
+    console.log('eat ', food)
+    next()
+  }
+  this.cbs.push(cb)
+  return this
+}
+
+LazyMan.prototype.sleepFirst = function(time) {
+  const cb = next => {
+    setTimeout(() => {
+      console.log('wake up after ', time, 's')
+      next()
+    }, time * 1000)
+  }
+  this.cbs.unshift(cb)
+  return this
+}
+
+LazyMan.prototype.next = function() {
+  if (this.cbs.length <= 0) return
+  const cb = this.cbs.shift()
+  cb(this.next.bind(this))
+}
+
+LazyMan('Hank')
+// 输出:
+// Hi! This is Hank!
+LazyMan('Hank')
+  .sleep(2)
+  .eat('dinner')
+// 输出
+// Hi! This is Hank!
+// 等待2秒..
+// Wake up after 2
+// Eat dinner~
+LazyMan('Hank')
+  .sleep(2)
+  .eat('dinner')
+  .eat('supper')
+// 输出
+// Hi This is Hank!
+// Eat dinner~
+// Eat supper~
+LazyMan('Hank')
+  .sleepFirst(5)
+  .eat('supper')
+// 输出
+//等待5秒
+// Wake up after 5
+// Hi This is Hank!
+// Eat supper~

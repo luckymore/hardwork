@@ -48,6 +48,12 @@ glg --grep='删除 pages/friendsHelp'
 ```
 
 
+### git fetch
+[我清理了远程已合并的分支，想批量删除本地已被合并的分支](https://stackoverflow.com/a/33548037/8035949)
+```bash
+git fetch -p && for branch in `git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'`; do git branch -D $branch; done
+```
+
 
 ## 参考
 - [Git 菜单](https://github.com/geeeeeeeeek/git-recipes/blob/master/README.md)
